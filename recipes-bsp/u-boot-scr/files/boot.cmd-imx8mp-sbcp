@@ -1,0 +1,11 @@
+echo " - Setting kernel arguments"
+setenv bootargs ${bootargs} console=ttymxc3,115200 root=/dev/mmcblk2p4 rootfstype=ext4 rootwait rw
+
+# Enable HDMI and rotate fbcon 270 degrees by boot procedure
+setenv bootargs ${bootargs} video=HDMI-A-1:e fbcon=rotate:3
+
+# TODO: Remove this configuration after 12V is functional
+gpio set GPIO4_11
+
+echo ===== Starting i.MX8M Plus SBCP =====
+bootm ${fit_addr}
